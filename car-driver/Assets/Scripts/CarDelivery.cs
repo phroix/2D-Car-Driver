@@ -15,7 +15,7 @@ public class CarDelivery : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mission.text = "Find the pink Package and deliver the package.";
+        if(mission!= null) mission.text = "Find a pink Package and deliver it.";
     }
 
     void Update()
@@ -25,7 +25,7 @@ public class CarDelivery : MonoBehaviour
 
     void SetPackagesDeliveredAmount()
     {
-        packagesDeliveredText.text = packagesDelivered.ToString();
+        if(mission!= null) packagesDeliveredText.text = packagesDelivered.ToString();
     }
 
     public int GetPackagesDeliveredAmount()
@@ -37,16 +37,16 @@ public class CarDelivery : MonoBehaviour
     {
         if (other.gameObject.tag == "Package" && !pickedUpPackage)
         {
-            packageOnBoard.text = "Package picked up!";
-            mission.text = "Find the blue customer and deliver the package.";
+            if(packageOnBoard!= null) packageOnBoard.text = "Package picked up!";
+            if(mission!= null) mission.text = "Find a blue customer and deliver the package.";
             Destroy(other.gameObject, .5f);
             pickedUpPackage = true;
         }
 
         if (other.gameObject.tag == "Customer" && pickedUpPackage)
         {
-            packageOnBoard.text = "Package delivered!";
-            mission.text = "Find next Package";
+            if(packageOnBoard!= null) packageOnBoard.text = "Package delivered!";
+            if(mission!= null) mission.text = "Find the next Package!";
             ++packagesDelivered;
             pickedUpPackage = false;
         }
